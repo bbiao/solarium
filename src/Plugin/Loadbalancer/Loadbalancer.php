@@ -445,7 +445,7 @@ class Loadbalancer extends AbstractPlugin
                     // but do issue an event for things like logging
                     $this->client->getEventDispatcher()->dispatch(
                         Events::ENDPOINT_FAILURE,
-                        new EndpointFailureEvent($endpoint, $e)
+                        new EndpointFailureEvent($endpoint, $e, $this)
                     );
                 }
             }

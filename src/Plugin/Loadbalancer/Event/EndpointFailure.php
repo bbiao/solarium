@@ -21,16 +21,22 @@ class EndpointFailure extends Event
      */
     protected $exception;
 
+     /**
+     * @var Loadbalancer
+     */
+    protected $loadbalancer;
+
     /**
      * Constructor.
      *
      * @param Endpoint      $endpoint
      * @param HttpException $exception
      */
-    public function __construct(Endpoint $endpoint, HttpException $exception)
+    public function __construct(Endpoint $endpoint, HttpException $exception, Loadbalancer $loadbalancer = null)
     {
         $this->endpoint = $endpoint;
         $this->exception = $exception;
+        $this->loadbalancer = $loadbalancer;
     }
 
     /**
@@ -47,5 +53,10 @@ class EndpointFailure extends Event
     public function getException()
     {
         return $this->exception;
+    }
+
+    public function getLoadbalancer()
+    {
+        return $this->loadbalancer;
     }
 }
